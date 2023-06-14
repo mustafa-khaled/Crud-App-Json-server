@@ -1,0 +1,16 @@
+.home {
+  margin: 90px auto 50px;
+}
+
+.home h2 {
+  margin-bottom: 15px;
+}
+
+.home_content {
+  padding: 10px;
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  border: 1px solid var(--gray);
+  flex-direction: column;
+}
