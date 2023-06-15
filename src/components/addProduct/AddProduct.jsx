@@ -1,25 +1,44 @@
 import styles from "./add.module.css";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
+import { insertProduct } from "../../redux/slices/productsSlice";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   // Define the validation schema using Yup
   const validationSchema = Yup.object().shape({
     title: Yup.string().required("Title is required"),
-    description: Yup.string().required("Invalid description"),
-    photo: Yup.mixed().required("Photo is required"),
+    description: Yup.string().required("Description is required"),
+    price: Yup.number().required("Price is required"),
+    coverImage: Yup.string().required("Cover Image URL is required"),
+    images: Yup.string(),
   });
 
   // Define the initial form values
   const initialValues = {
     title: "",
     description: "",
-    photo: "", // Updated to an empty string
+    price: 0,
+    coverImage: "",
+    images: "",
   };
 
   // Handle form submission
-  const handleSubmit = (values, { resetForm }) => {
-    resetForm();
+  const handleSubmit = (values) => {
+    // Remove the id field from the form values
+    const { id, ...productData } = values;
+
+    // Split the images string into an array of strings
+    const images = productData.images ? productData.images.split(" ") : [];
+
+    // Dispatch the insertProduct action with the form values
+    dispatch(insertProduct({ ...productData, images }));
+
+    navigate("/");
   };
 
   return (
@@ -31,35 +50,27 @@ const AddProduct = () => {
           onSubmit={handleSubmit}>
           <Form className={styles.input_holder}>
             <div>
-              <label htmlFor="photo">Image:</label>
-              <Field type="file" id="photo" name="photo" />
-              <ErrorMessage
-                name="photo"
-                component="div"
-                className={styles.error}
-              />
+              <label htmlFor="coverImage">Cover Image URL:</label>
+              <Field type="text" id="coverImage" name="coverImage" />
             </div>
-
             <div>
               <label htmlFor="title">Title:</label>
               <Field type="text" id="title" name="title" />
-              <ErrorMessage
-                name="title"
-                component="div"
-                className={styles.error}
-              />
             </div>
-
             <div>
               <label htmlFor="description">Description:</label>
               <Field type="text" id="description" name="description" />
-              <ErrorMessage
-                name="description"
-                component="div"
-                className={styles.error}
-              />
             </div>
-
+            <div>
+              <label htmlFor="price">Price:</label>
+              <Field type="number" id="price" name="price" />
+            </div>
+            <div>
+              <label htmlFor="images">Images:</label>
+              <Field component="textarea" id="images" name="images" />
+              <br />
+              <small>Image URLs separated by spaces</small>
+            </div>
             <button type="submit" className={styles.btn}>
               Add
             </button>
