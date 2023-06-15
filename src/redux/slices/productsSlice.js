@@ -34,12 +34,13 @@ export const deleteProduct = createAsyncThunk(
   }
 );
 
+// Insert Product
 export const insertProduct = createAsyncThunk(
   "products/insertProduct",
   async (item, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-    // const { auth } = getState();
-    // item.userId = auth.id;
+    const { rejectWithValue, getState } = thunkAPI;
+    const { auth } = getState();
+    item.userId = auth.id;
     try {
       const res = await fetch(`http://localhost:5000/products`, {
         method: "POST",

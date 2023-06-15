@@ -20,7 +20,7 @@ const Header = () => {
             } open-list`}></i>
         </div>
         <div>
-          <Link href="#">Login</Link>
+          <Link href="#">Log Out</Link>
         </div>
       </div>
       <div className={`${styles.list} ${isListOpen ? `${styles.active}` : ""}`}>
