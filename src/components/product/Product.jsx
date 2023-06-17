@@ -1,14 +1,16 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./product.module.css";
 
 const Product = ({ product, onDelete }) => {
   return (
     <div className={styles.product} key={product.id}>
-      <div className={styles.image_holder}>
-        <img src={product.coverImage} alt="photo" />
-      </div>
-      <h3>{product.title}</h3>
-      <p>{product.description}</p>
+      <Link to={`/product/${product.id}`}>
+        <div className={styles.image_holder}>
+          <img src={product.coverImage} alt="photo" />
+        </div>
+        <h3>{product.title}</h3>
+        <p>{product.description}</p>
+      </Link>
       <div>
         <button className={styles.edit_btn}>
           <i className="fa-solid fa-pen"></i>

@@ -14,6 +14,15 @@
   width: 80px;
 }
 
+.product a {
+  text-align: center;
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+}
+
 .edit_btn,
 .delete_btn {
   padding: 10px;
@@ -54,5 +63,8 @@
 
   .product p {
     margin-bottom: 30px;
+  }
+  .product a {
+    flex-direction: column;
   }
 }

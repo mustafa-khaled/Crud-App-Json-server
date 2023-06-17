@@ -1,6 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const initialState = { products: [], loading: false, error: null };
+const initialState = {
+  products: [],
+  loading: false,
+  error: null,
+  product: null,
+};
 
 // Fetch All Products
 export const fetchProducts = createAsyncThunk(
@@ -13,6 +18,23 @@ export const fetchProducts = createAsyncThunk(
       return data;
     } catch (error) {
       return rejectedWithValue(error.message);
+    }
+  }
+);
+
+// Product Details
+export const productDetails = createAsyncThunk(
+  "products/productDetails",
+
+  async (id, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+
+    try {
+      const res = await fetch(`http://localhost:5000/products/${id}`);
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -74,6 +96,20 @@ const productsSlice = createSlice({
       state.products = action.payload;
     });
     builder.addCase(fetchProducts.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
+
+    //  Product Details
+    builder.addCase(productDetails.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(productDetails.fulfilled, (state, action) => {
+      state.loading = false;
+      state.product = action.payload;
+    });
+    builder.addCase(productDetails.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
     });
