@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./product.module.css";
 
 const Product = ({ product, onDelete }) => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.product} key={product.id}>
       <Link to={`/product/${product.id}`}>
@@ -11,11 +13,14 @@ const Product = ({ product, onDelete }) => {
         <h3>{product.title}</h3>
         <p>{product.description}</p>
       </Link>
-      <div>
-        <button className={styles.edit_btn}>
+      <div className={styles.btns_holder}>
+        <button
+          className={styles.edit_btn}
+          onClick={() => navigate(`product/${product.id}/edit`)}>
           <i className="fa-solid fa-pen"></i>
           Edit
         </button>
+
         <button
           className={styles.delete_btn}
           onClick={() => onDelete(product.id)}>

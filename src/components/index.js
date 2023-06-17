@@ -5,3 +5,4 @@ export { default as NotFoundPage } from "./notFoundPage/NotFoundPage.jsx";
 export { default as Loading } from "./loading/Loading.jsx";
 export { default as Popup } from "./popup/Popup.jsx";
 export { default as ProductDetails } from "./productDetails/ProductDetails.jsx";
+export { default as EditProduct } from "./editProduct/EditProduct.jsx";

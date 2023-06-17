@@ -80,6 +80,29 @@ export const insertProduct = createAsyncThunk(
   }
 );
 
+// Edit Product
+export const editProduct = createAsyncThunk(
+  "products/editProduct",
+  async (item, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+
+    try {
+      const res = await fetch(`http://localhost:5000/products/${item.id}`, {
+        method: "PATCH",
+        body: JSON.stringify(item),
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      });
+
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const productsSlice = createSlice({
   name: "products",
   initialState,
@@ -138,6 +161,20 @@ const productsSlice = createSlice({
       state.products.push(action.payload);
     });
     builder.addCase(insertProduct.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
+
+    // Edit Product
+    builder.addCase(editProduct.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(editProduct.fulfilled, (state, action) => {
+      state.loading = false;
+      state.product = action.payload;
+    });
+    builder.addCase(editProduct.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
     });

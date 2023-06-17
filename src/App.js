@@ -1,5 +1,6 @@
 import {
   AddProduct,
+  EditProduct,
   Header,
   Home,
   NotFoundPage,
@@ -13,7 +14,8 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/add" element={<AddProduct />} />
+        <Route path="add" element={<AddProduct />} />
+        <Route path="product/:id/edit" element={<EditProduct />} />
         <Route path="product/:id" element={<ProductDetails />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

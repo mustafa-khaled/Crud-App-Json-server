@@ -23,8 +23,17 @@
   width: 70%;
 }
 
+.btns_holder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .edit_btn,
 .delete_btn {
+  display: flex;
+  align-items: center;
+
   padding: 10px;
   border: none;
   outline: none;
@@ -36,10 +45,6 @@
   -moz-transition: 0.3s;
   -ms-transition: 0.3s;
   -o-transition: 0.3s;
-}
-
-.edit_btn {
-  margin-right: 10px;
 }
 
 .edit_btn:hover,
