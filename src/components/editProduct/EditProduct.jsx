@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { productDetails, editProduct } from "../../redux/slices/productsSlice";
+import {
+  productDetails,
+  editProduct,
+  cleanProduct,
+} from "../../redux/slices/productsSlice";
 import styles from "./edit.module.css";
 
 const EditProduct = () => {
@@ -18,7 +22,7 @@ const EditProduct = () => {
   const product = useSelector((state) => state.products.product);
 
   useEffect(() => {
-    dispatch({ type: "products/cleanProduct" });
+    dispatch(cleanProduct());
   }, [dispatch]);
 
   useEffect(() => {

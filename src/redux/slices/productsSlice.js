@@ -185,4 +185,5 @@ const productsSlice = createSlice({
   },
 });
 
+export const { cleanProduct } = productsSlice.actions;
 export default productsSlice.reducer;
