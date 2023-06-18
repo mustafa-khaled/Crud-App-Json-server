@@ -6,7 +6,7 @@
   margin-bottom: 20px;
 }
 
-.product:not(.product:last-of-type) {
+.product {
   border-bottom: 1px solid var(--gray);
 }
 

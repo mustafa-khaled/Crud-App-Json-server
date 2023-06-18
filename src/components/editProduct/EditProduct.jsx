@@ -18,6 +18,10 @@ const EditProduct = () => {
   const product = useSelector((state) => state.products.product);
 
   useEffect(() => {
+    dispatch({ type: "products/cleanProduct" });
+  }, [dispatch]);
+
+  useEffect(() => {
     dispatch(productDetails(id));
   }, [dispatch, id]);
 

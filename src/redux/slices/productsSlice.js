@@ -106,7 +106,11 @@ export const editProduct = createAsyncThunk(
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    cleanProduct: (state) => {
+      state.product = null;
+    },
+  },
 
   // Fetch All Products
   extraReducers: (builder) => {
