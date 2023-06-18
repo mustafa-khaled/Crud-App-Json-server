@@ -12,22 +12,19 @@ const ProductDetails = lazy(() =>
 );
 const Header = lazy(() => import("./components/header/Header"));
 const Home = lazy(() => import("./components/home/Home"));
-const WithGuard = lazy(() => import("./components/withGuard/WithGuard"));
 
 const App = () => {
   return (
     <div>
       <Suspense fallback={<Loading />}>
-        <WithGuard>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="add" element={<AddProduct />} />
-            <Route path="product/:id/edit" element={<EditProduct />} />
-            <Route path="product/:id" element={<ProductDetails />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </WithGuard>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="add" element={<AddProduct />} />
+          <Route path="product/:id/edit" element={<EditProduct />} />
+          <Route path="product/:id" element={<ProductDetails />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
       </Suspense>
     </div>
   );

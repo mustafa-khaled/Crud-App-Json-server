@@ -10,8 +10,8 @@ const Product = ({ product, onDelete }) => {
         <div className={styles.image_holder}>
           <img src={product.coverImage} alt="photo" />
         </div>
-        <h3>{product.title}</h3>
-        <p>{product.description}</p>
+        <h3>{product.title.slice(0, 20)}</h3>
+        <p>{product.description.slice(0, 30)}</p>
       </Link>
       <div className={styles.btns_holder}>
         <button

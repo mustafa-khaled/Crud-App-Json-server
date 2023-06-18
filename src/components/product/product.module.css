@@ -8,6 +8,7 @@
 
 .product {
   border-bottom: 1px solid var(--gray);
+  text-align: center;
 }
 
 .product img {
@@ -58,7 +59,7 @@
   margin-right: 10px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .product {
     flex-direction: column;
   }
