@@ -1,6 +1,7 @@
 .add_container {
+  margin-top: 70px;
   background-image: linear-gradient(90deg, var(--five), var(--six));
-  min-height: 100vh;
+  min-height: calc(100vh - 70px);
 }
 
 .add {
@@ -11,10 +12,9 @@
 }
 
 .add form {
-  margin-top: 80px;
   border: 2px solid var(--gray);
   background-color: var(--white);
-  width: 300px;
+  width: 400px;
   padding: 20px;
   border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -73,6 +73,12 @@ label {
 
 .disabled {
   pointer-events: none;
+}
+
+@media (max-width: 500px) {
+  .add form {
+    width: 300px;
+  }
 }
 
 @media (max-width: 350px) {
