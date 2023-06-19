@@ -15,4 +15,4 @@
 - **JSON Server**: A simple and lightweight database that serves JSON data, used to simulate a backend and manage the product data.
 - **CSS**: Styling the application to provide an appealing and intuitive user interface.
 - **Formik**: A library for managing form input in React applications, employed to handle form submission and validation.
- -  [Vidoe]()
+ -  [Vidoe](https://www.linkedin.com/posts/the-mustafa-khaled_react-activity-7076511794478878720-24t1?utm_source=share&utm_medium=member_desktop)
