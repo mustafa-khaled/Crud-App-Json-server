@@ -8,6 +8,8 @@ import {
 } from "../../redux/slices/productsSlice";
 import styles from "./edit.module.css";
 
+import PopupTwo from "../popup2/PopupTwo";
+
 const EditProduct = () => {
   const navigate = useNavigate();
 
@@ -16,6 +18,7 @@ const EditProduct = () => {
   const [price, setPrice] = useState("");
   const [coverImage, setCoverImage] = useState("");
   const [images, setImages] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
 
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -53,7 +56,13 @@ const EditProduct = () => {
 
     dispatch(editProduct(editedProduct))
       .unwrap()
-      .then(() => navigate("/"));
+      .then(() => {
+        setShowPopup(true);
+        setTimeout(() => {
+          setShowPopup(false);
+          navigate("/");
+        }, 2000);
+      });
   };
 
   return (
@@ -100,6 +109,7 @@ const EditProduct = () => {
             />
           </div>
           <button>Edit</button>
+          {showPopup && <PopupTwo content="Done" />}
         </form>
       </div>
     </div>

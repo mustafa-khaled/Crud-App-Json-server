@@ -1,9 +1,11 @@
+import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { insertProduct } from "../../redux/slices/productsSlice";
 import styles from "./add.module.css";
+import PopupTwo from "../popup2/PopupTwo";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Title is required"),
@@ -16,6 +18,7 @@ const validationSchema = Yup.object().shape({
 const AddProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleSubmit = async (values, { setSubmitting }) => {
     const { id, ...productData } = values;
@@ -23,7 +26,12 @@ const AddProduct = () => {
 
     try {
       await dispatch(insertProduct({ ...productData, images })).unwrap();
-      navigate("/");
+
+      setShowPopup(true);
+      setTimeout(() => {
+        setShowPopup(false);
+        navigate("/");
+      }, 1000);
     } catch (error) {
       console.error(error);
     } finally {
@@ -99,6 +107,7 @@ const AddProduct = () => {
                 disabled={isSubmitting}>
                 {isSubmitting ? "Submitting..." : "Add"}
               </button>
+              {showPopup && <PopupTwo content="Done" />}
             </Form>
           )}
         </Formik>
